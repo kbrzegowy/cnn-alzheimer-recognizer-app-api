@@ -1,3 +1,3 @@
-import { ServerInitializer } from "./src/server/server.initializer";
+import { ServerInitializer } from './src/server/server.initializer';
 
 ServerInitializer.startServer();
