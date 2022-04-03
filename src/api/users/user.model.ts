@@ -22,10 +22,17 @@ export class User extends BaseEntity {
     })
     email: string;
 
+    @Column({
+        unique: true
+    })
+    password: string;
+
     @Column()
     birth_date: Date;
 
-    @Column()
+    @Column({
+        length: 11
+    })
     PESEL: string;
 
     @Column({

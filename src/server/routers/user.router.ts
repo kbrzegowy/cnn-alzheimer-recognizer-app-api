@@ -8,15 +8,9 @@ export class UserRouter {
     constructor(private userController: UserController) {
         const userRouter = Router();
 
-        userRouter.post('/', (req, res) => {
-            // const result = this.userController.create(req.body);
-            // res.json(result);
-            res.sendStatus(200);
-            return;
-        });
-
-        userRouter.get(ROOT, (req, res)=> {
-            res.sendStatus(202);
+        userRouter.post(ROOT, (req, res) => {
+            const result = this.userController.register(req.body);
+            res.json(result);
             return;
         });
 
