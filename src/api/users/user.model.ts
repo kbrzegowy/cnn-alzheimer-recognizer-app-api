@@ -1,50 +1,57 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 export enum UserRole {
-    PATIENT = 'patient',
-    DIAGNOSTICIAN = 'diagnostician',
-    DOCTOR = 'doctor',
+  PATIENT = 'patient',
+  DIAGNOSTICIAN = 'diagnostician',
+  DOCTOR = 'doctor',
 }
 
 @Entity('user')
 export class User extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column()
-    surname: string;
+  @Column()
+  surname: string;
 
-    @Column({
-        unique: true
-    })
-    email: string;
+  @Column({
+    unique: true,
+  })
+  email: string;
 
-    @Column({
-        unique: true
-    })
-    password: string;
+  @Column({
+    unique: true,
+  })
+  password: string;
 
-    @Column()
-    birth_date: Date;
+  @Column()
+  birth_date: Date;
 
-    @Column({
-        length: 11
-    })
-    PESEL: string;
+  @Column({
+    length: 11,
+  })
+  PESEL: string;
 
-    @Column({
-        type: 'enum',
-        enum: UserRole,
-        default: UserRole.PATIENT,
-    })
-    role: UserRole;
+  @Column({
+    type: 'enum',
+    enum: UserRole,
+    default: UserRole.PATIENT,
+  })
+  role: UserRole;
 
-    @CreateDateColumn()
-    created_at: Date
+  @CreateDateColumn()
+  created_at: Date;
 
-    @UpdateDateColumn()
-    updated_at: Date
+  @UpdateDateColumn()
+  updated_at: Date;
 }

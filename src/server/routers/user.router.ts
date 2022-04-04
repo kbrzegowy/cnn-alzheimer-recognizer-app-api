@@ -1,19 +1,38 @@
-import { Router } from "express";
-import { UserController } from "../../api/users/user.controller";
-import { ROOT } from "./route.constatns";
+import { Router } from 'express';
+import { UserController } from '../../api/users/user.controller';
+import { ROUTE_MODIFIERS } from './route.constatns';
 
 export class UserRouter {
-    public readonly router: Router;
+  public readonly router: Router;
 
-    constructor(private userController: UserController) {
-        const userRouter = Router();
+  constructor(private userController: UserController) {
+    const userRouter = Router();
 
-        userRouter.post(ROOT, (req, res) => {
-            const result = this.userController.register(req.body);
-            res.json(result);
-            return;
-        });
+    userRouter.post(ROUTE_MODIFIERS.REGISTER, async (req, res) => {
+      try {
+        const result = await this.userController.register(req.body);
+        res.json(result);
+        return;
+      } catch (error) {
+        res.sendStatus(500);
+        return;
+      }
+    });
 
-        this.router = userRouter;
-    }
+    userRouter.post(ROUTE_MODIFIERS.LOGIN, async (req, res) => {
+      try {
+        const result = await this.userController.login(
+          req.body.email,
+          req.body.password
+        );
+        res.json(result);
+        return;
+      } catch (error) {
+        res.sendStatus(500);
+        return;
+      }
+    });
+
+    this.router = userRouter;
+  }
 }

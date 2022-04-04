@@ -1,15 +1,14 @@
-import { User } from "./user.model";
-import { UserService } from "./user.service";
-import { UserRegister } from "./user.types";
+import { User } from './user.model';
+import { UserService } from './user.service';
 
 export class UserController {
-    constructor(private userService: UserService) {}
+  constructor(private userService: UserService) {}
 
-    public async register(user: User): Promise<User> {
-        return this.userService.register(user);
-    }
-    
-    public async login(email: string): Promise<User> {
-        return this.userService.login(email);
-    }
+  public async register(user: User): Promise<User> {
+    return this.userService.register(user);
+  }
+
+  public async login(email: string, password: string): Promise<string> {
+    return this.userService.login(email, password);
+  }
 }

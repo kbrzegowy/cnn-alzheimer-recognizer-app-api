@@ -23,7 +23,8 @@ export class ServerInitializer {
       server.use(ROOT, mainRouter.router);
 
       server.listen(process.env.APP_PORT, () =>
-      console.log(`Server is running on port ${process.env.APP_PORT}...`));
+        console.log(`Server is running on port ${process.env.APP_PORT}...`)
+      );
     } catch (error) {
       console.log('Server was not able to start...');
       process.exit(1);
